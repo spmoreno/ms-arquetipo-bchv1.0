@@ -11,11 +11,11 @@
 	- service.yml: Contiene objeto service que expone el MS desplegado en el punto 4.1 hacia internet mediante el uso de un LoadBalancer (el LoadBalancer puede ser modificado para exponga localmente el MS en caso de probar con minikube o microk8s por ejemplo).
 	- El LoadBalancer expondrá el puerto 80 e internamente traducirá las llamadas al pod en el puerto 8080
 
-5) Para desplegar en un cluster K8s seguir los siguientes pasos:
-	- Se requiere acceso a un cluster K8s en OCI
-	- Se requiere el cli kubectl configurado para acceder al cluster
-	- Desde la raíz de este repo correr el comando kubectl create -f k8s/.
-	- Esperar a que el LoadBalancer sea provisionado. Se puede revisar el estado con el siguiente comando `kubectl get svc ms-v1-service -o yaml`
+## Para desplegar el MS en un cluster K8s seguir los siguientes pasos:
+- Se requiere acceso a un cluster K8s en OCI
+- Se requiere el cli kubectl configurado para acceder al cluster
+- Desde la raíz de este repo correr el comando kubectl create -f k8s/.
+- Esperar a que el LoadBalancer sea provisionado. Se puede revisar el estado con el siguiente comando `kubectl get svc ms-v1-service -o yaml`
 
 El resultado del comando será algo como esto:
 <pre>apiVersion: v1
@@ -53,6 +53,6 @@ Para probar el MS se debe ingresar a ``http://150.136.184.65/actuator/health``
 La url debería responder con:
 ``{"status":"UP"}``
 
-6) Para eliminar los servicios en el cluster:
-	- Simplemente correr el siguiente comando desde la raíz de este repositorio: ``kubectl delete -f k8s/.``
-	- Se eliminarán ambos objetos (deployment y service) y OCI se encargará de eliminar el LoadBalancer como infraestructura
+## Para eliminar los objetos del MS en el cluster:
+- Simplemente correr el siguiente comando desde la raíz de este repositorio: ``kubectl delete -f k8s/.``
+- Se eliminarán ambos objetos (deployment y service) y OCI se encargará de eliminar el LoadBalancer como infraestructura
