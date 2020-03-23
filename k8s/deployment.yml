@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-v1-deployment
+  labels:
+    app: ms-v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ms-v1
+  template:
+    metadata:
+      labels:
+        app: ms-v1
+    spec:
+      containers:
+      - name: ms-v1
+        image: spmoreno/labsbch:ms-arquetipo-bch-v1.0
+        ports:
+        - containerPort: 8080

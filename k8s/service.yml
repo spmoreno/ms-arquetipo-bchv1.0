@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ms-v1-service
+spec:
+  selector:
+    app: ms-v1
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  #Esto generará un servicio con IP externa visible en Internet
+  type: LoadBalancer
