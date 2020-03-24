@@ -1,6 +1,12 @@
 FROM openjdk:8-jdk-alpine AS builder
 WORKDIR target/dependency
 ARG APPJAR=target/*.jar
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+COPY src src
+
+RUN ./mvnw install
 COPY ${APPJAR} app.jar
 RUN jar -xf ./app.jar
 
