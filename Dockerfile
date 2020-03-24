@@ -6,9 +6,7 @@ COPY .mvn .mvn
 COPY pom.xml .
 COPY src src
 
-RUN ./mvnw install
-COPY ${APPJAR} app.jar
-RUN jar -xf ./app.jar
+RUN ./mvnw install -q
 
 FROM openjdk:8-jre-alpine
 VOLUME /tmp
